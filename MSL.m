@@ -33,32 +33,33 @@ PadreIsland(PadreIslandEmpty)=PadreIslandMean;
 
 
 
-AcadiaYearlyChange=yearlyChange(Acadia);
-CapeHatterasYearlyChange=yearlyChange(CapeHatteras);
-KenaiFjordsYearlyChange=yearlyChange(KenaiFjords);
-OlympicYearlyChange=yearlyChange(Olympic);
-PadreIslandYearlyChange=yearlyChange(PadreIsland);
+AcadiaYearlyChange=sumP(Acadia);
+CapeHatterasYearlyChange=sumP(CapeHatteras);
+KenaiFjordsYearlyChange=sumP(KenaiFjords);
+OlympicYearlyChange=sumP(Olympic);
+PadreIslandYearlyChange=sumP(PadreIsland);
 
-time2=time
+time2=time;
 time=time(12:end);
 
 %numel(time)
 %numel(AcadiaYearlyChange)
 
 hold off
-plot(time,AcadiaYearlyChange,'y-o')
+plot(time2,AcadiaYearlyChange,'y-o')
+title
 legend('Acadia')
 savefig('Acadia')
-plot(time,CapeHatterasYearlyChange,'m--+')
+plot(time2,CapeHatterasYearlyChange,'m--+')
 legend('CapeHatteras')
 savefig('CapeHatteras')
-plot(time,KenaiFjordsYearlyChange,'c:*')
+plot(time2,KenaiFjordsYearlyChange,'c:*')
 legend('KenaiFjords')
 savefig('KenaiFjords')
-plot(time,OlympicYearlyChange,'r-..')
+plot(time2,OlympicYearlyChange,'r-..')
 legend('Olympic')
 savefig('Olympic')
-plot(time,PadreIslandYearlyChange,'g-x')
+plot(time2,PadreIslandYearlyChange,'g-x')
 legend('PadreIsland')
 savefig('PadreIsland')
 
