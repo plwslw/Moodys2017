@@ -60,6 +60,8 @@ plot(time,PadreIslandYearlyChange,'g-x')
 legend('PadreIsland')
 savefig('PadreIsland')
 
+write=[time, AcadiaYearlyChange, CapeHatterasYearlyChange, KenaiFjordsYearlyChange, OlympicYearlyChange, PadreIslandYearlyChange]
+csvwrite('NatParks.csv',write)
 
 function out = yearlyChange(monthlyData);
 months=60;
