@@ -37,6 +37,7 @@ KenaiFjordsYearlyChange=yearlyChange(KenaiFjords);
 OlympicYearlyChange=yearlyChange(Olympic);
 PadreIslandYearlyChange=yearlyChange(PadreIsland);
 
+time2=time
 time=time(60:end);
 
 numel(time)
