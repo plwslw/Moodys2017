@@ -2,7 +2,7 @@ cla
 
 sea_level=xlsread('NPS_MeanSeaLevel.xlsx',3,'A5:G244');
 
-time=sea_level(:,1)+sea_level(:,2)/12;
+time=sea_level(:,1)+sea_level(:,2)/12.0;
 
 Acadia=sea_level(:,3);
 CapeHatteras=sea_level(:,4);
@@ -17,7 +17,7 @@ Acadia(AcadiaEmpty)=AcadiaMean;
 
 CapeHatterasEmpty=isnan(CapeHatteras);
 CapeHatterasMean=mean(CapeHatteras,'omitnan')
-Acadia(CapeHatterasEmpty)=CapeHatterasMean;
+CapeHatteras(CapeHatterasEmpty)=CapeHatterasMean;
 
 KenaiFjordsEmpty=isnan(KenaiFjords);
 KenaiFjordsMean=mean(KenaiFjords,'omitnan')
@@ -31,6 +31,8 @@ PadreIslandEmpty=isnan(PadreIsland);
 PadreIslandMean=mean(PadreIsland,'omitnan')
 PadreIsland(PadreIslandEmpty)=PadreIslandMean;
 
+
+
 AcadiaYearlyChange=yearlyChange(Acadia);
 CapeHatterasYearlyChange=yearlyChange(CapeHatteras);
 KenaiFjordsYearlyChange=yearlyChange(KenaiFjords);
@@ -38,10 +40,10 @@ OlympicYearlyChange=yearlyChange(Olympic);
 PadreIslandYearlyChange=yearlyChange(PadreIsland);
 
 time2=time
-time=time(60:end);
+time=time(12:end);
 
-numel(time)
-numel(AcadiaYearlyChange)
+%numel(time)
+%numel(AcadiaYearlyChange)
 
 hold off
 plot(time,AcadiaYearlyChange,'y-o')
@@ -60,11 +62,13 @@ plot(time,PadreIslandYearlyChange,'g-x')
 legend('PadreIsland')
 savefig('PadreIsland')
 
+format long
+
 write=[time, AcadiaYearlyChange, CapeHatterasYearlyChange, KenaiFjordsYearlyChange, OlympicYearlyChange, PadreIslandYearlyChange]
 csvwrite('NatParks.csv',write)
 
 function out = yearlyChange(monthlyData);
-months=60;
+months=12;
 %out=zeros(numel(monthlyData)-months+1, 1);
 pnts=numel(monthlyData)- months + 1
 out=zeros(pnts,1)
