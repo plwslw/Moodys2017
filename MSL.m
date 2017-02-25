@@ -12,23 +12,23 @@ PadreIsland=sea_level(:,7);
 
 %replace un-known data with mean
 AcadiaEmpty=isnan(Acadia);
-AcadiaMean=mean(Acadia,'omitnan')
+AcadiaMean=mean(Acadia,'omitnan');
 Acadia(AcadiaEmpty)=AcadiaMean;
 
 CapeHatterasEmpty=isnan(CapeHatteras);
-CapeHatterasMean=mean(CapeHatteras,'omitnan')
+CapeHatterasMean=mean(CapeHatteras,'omitnan');
 CapeHatteras(CapeHatterasEmpty)=CapeHatterasMean;
 
 KenaiFjordsEmpty=isnan(KenaiFjords);
-KenaiFjordsMean=mean(KenaiFjords,'omitnan')
+KenaiFjordsMean=mean(KenaiFjords,'omitnan');
 KenaiFjords(KenaiFjordsEmpty)=KenaiFjordsMean;
 
 OlympicEmpty=isnan(Olympic);
-OlympicMean=mean(Olympic,'omitnan')
+OlympicMean=mean(Olympic,'omitnan');
 Olympic(OlympicEmpty)=OlympicMean;
 
 PadreIslandEmpty=isnan(PadreIsland);
-PadreIslandMean=mean(PadreIsland,'omitnan')
+PadreIslandMean=mean(PadreIsland,'omitnan');
 PadreIsland(PadreIslandEmpty)=PadreIslandMean;
 
 
@@ -64,16 +64,7 @@ savefig('PadreIsland')
 
 format long
 
-write=[time, AcadiaYearlyChange, CapeHatterasYearlyChange, KenaiFjordsYearlyChange, OlympicYearlyChange, PadreIslandYearlyChange]
+write=[time, AcadiaYearlyChange, CapeHatterasYearlyChange, KenaiFjordsYearlyChange, OlympicYearlyChange, PadreIslandYearlyChange];
 csvwrite('NatParks.csv',write)
 
-function out = yearlyChange(monthlyData);
-months=12;
-%out=zeros(numel(monthlyData)-months+1, 1);
-pnts=numel(monthlyData)- months + 1
-out=zeros(pnts,1)
-for i=months:1:numel(monthlyData);
-    pastYear=monthlyData(i-months+1:i);
-    out(i-months+1)=sum(pastYear);
-end
-end
+
